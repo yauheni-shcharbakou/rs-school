@@ -1,0 +1,43 @@
+@import '../vars';
+
+.Card {
+    margin: $bp 0;
+    border-radius: $br;
+    box-shadow: 0 0 5px rgba(255,255,255,.5);
+    transition: $trans;
+
+    @media (max-width: 400px) {
+        font-size: .75em;
+    }
+
+    &:hover {
+        background-color: rgba(255,255,255,.2);
+        box-shadow: 0 0 0 transparent;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 600px) {
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: flex-start;
+        }
+    }
+
+    &__primary {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    &__date {
+        color: rgba(255,255,255,.6);
+    }
+
+    a {
+        padding: $bp;
+        display: block;
+    }
+}

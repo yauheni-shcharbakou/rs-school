@@ -1,0 +1,18 @@
+@import '../vars';
+
+.Footer {
+    padding: $bp;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        color: grey;
+    }
+
+    img {
+        filter: invert(1);
+        width: 80px;
+        height: 80px;
+    }
+}

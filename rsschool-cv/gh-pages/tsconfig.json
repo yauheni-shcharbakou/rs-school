@@ -1,0 +1,29 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "outDir": "./docs/",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "docs"
+  ]
+}

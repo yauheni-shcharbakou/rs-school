@@ -1,0 +1,197 @@
+$primary: #212121;
+$accent: rgb(235,0,40); //#42a5f6
+$hover: rgba(255,255,255,.2);
+$divider: #474747;
+$base: 5px;
+$br: $base * 4;
+$tr: .3s ease-out;
+
+html {
+  margin: 0 auto;
+  padding: 0;
+  width: $base * 200;
+  background-color: black;
+  color: white;
+  font-family: Arial, serif;
+  
+  @media (max-width: $base * 200) {
+    width: 100%;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $accent;
+  text-transform: uppercase;
+}
+
+header, main {
+  margin-bottom: 1em;
+}
+
+header, main, footer {
+  padding: $br;
+  background-color: $primary;
+  border-radius: $br;
+}
+
+header {
+  height: $base * 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media (max-width: 460px) {
+    height: auto;
+    flex-direction: column;
+  }
+
+  article {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  
+    @media (max-width: 460px) {
+      width: 100%;
+      
+      .contacts {
+        justify-content: center;
+        
+        li:first-child {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+  
+  img {
+    width: $base * 30;
+    height: inherit;
+    border-radius: 50%;
+  }
+}
+
+section {
+  article & p:first-letter {
+    color: $accent;
+  }
+  
+  &:not(:last-child) {
+    border-bottom: 1px solid $divider;
+  }
+}
+
+main {
+  display: flex;
+  
+  article {
+    padding-right: $br;
+    flex: 70%;
+    
+    a {
+      color: $accent;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  aside {
+    padding-left: $br;
+    flex: 30%;
+    
+    ul {
+      margin: 1em;
+      padding-left: $br;
+      
+      & li {
+        transition: $tr;
+        
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 460px) {
+    flex-direction: column;
+    
+    article {
+      padding-right: 0;
+      border-bottom: 1px solid $divider;
+    }
+    
+    aside {
+      padding-left: 0;
+    }
+  }
+}
+
+.contacts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  
+  li {
+    margin: 1em;
+    width: $base * 8;
+    height: $base * 8;
+    position: relative;
+    background-color: $divider;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: $base * 8 $base * 8;
+    border-radius: 50%;
+    transition: $tr;
+    
+    &:first-child {
+      margin-left: 0;
+      background-image: url(gmail.png);
+    }
+    
+    &:nth-child(2) {
+      background-image: url(tg.png);
+    }
+  
+    &:nth-child(3) {
+      background-image: url(github.png);
+    }
+    
+    &:hover {
+      background-color: $accent;
+    }
+    
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  span {
+    color: grey;
+  }
+  
+  img {
+    width: $base * 10;
+    height: $base * 10;
+  }
+  
+  .contacts li:first-child {
+    margin-left: 1em;
+  }
+}

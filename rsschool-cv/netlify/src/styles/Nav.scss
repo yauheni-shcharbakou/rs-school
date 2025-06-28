@@ -1,0 +1,33 @@
+@import '../vars';
+
+.Nav {
+    width: 100%;
+    padding: 1em;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        li {
+            width: 120px;
+            height: 50px;
+            border-bottom: 2px solid transparent;
+            transition: $trans;
+
+            &:hover {
+                color: $accent;
+                border-bottom-color: $accent;
+            }
+
+            a {
+                height: inherit;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

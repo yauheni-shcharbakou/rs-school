@@ -1,0 +1,50 @@
+@import '../vars';
+
+$contacts_size: 5em;
+
+.Contacts {
+    display: flex;
+
+    li {
+        margin: 0 $contacts_size / 2;
+        width: $contacts_size;
+        height: $contacts_size;
+        position: relative;
+        background-color: #666;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: $contacts_size $contacts_size;
+        border-radius: 50%;
+        transition: $trans;
+
+        @media (max-width: 600px) {
+            margin: 0 $contacts_size / 4;
+            width: $contacts_size / 2;
+            height: $contacts_size / 2;
+            background-size: $contacts_size / 2 $contacts_size / 2;
+        }
+
+        &:hover {
+            background-color: $accent;
+            transform: scale(.8);
+        }
+
+        &:first-child {
+            background-image: url('../img/gmail.png');
+        }
+
+        &:nth-child(2) {
+            background-image: url('../img/tg.png');
+        }
+
+        &:last-child {
+            background-image: url('../img/github.png');
+        }
+
+        a {
+            width: inherit;
+            height: inherit;
+            position: absolute;
+        }
+    }
+}

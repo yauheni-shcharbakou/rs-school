@@ -1,0 +1,45 @@
+@import '../vars';
+
+.Section {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+
+    &:hover {
+        h3::after {
+            background-color: $accent;
+        }
+    }
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    h3 {
+        padding: $bp / 2 0;
+        position: relative;
+
+        &::after {
+            content: '';
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            background-color: transparent;
+            transition: $trans;
+        }
+    }
+
+    p:first-letter {
+        color: $accent;
+    }
+}
+
+pre code.hljs {
+    filter: invert(1);
+    border-radius: $br;
+    font-size: .85em;
+
+    @media (max-width: 600px) {
+        font-size: .6em;
+    }
+}

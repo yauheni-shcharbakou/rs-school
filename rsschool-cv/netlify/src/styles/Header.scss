@@ -1,0 +1,41 @@
+@import '../vars';
+
+.Header {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        cursor: crosshair;
+        transition: $trans;
+
+        &:hover {
+            @media (min-width: 600px) {
+                width: 60vh;
+                height: 60vh;
+                max-width: 500px;
+                max-height: 500px;
+            }
+
+            @media (min-width: 1500px) {
+                width: 600px;
+                height: 600px;
+                max-width: 600px;
+                max-height: 600px;
+            }
+        }
+    }
+
+    h1 {
+        padding: 1em;
+        text-align: center;
+
+        @media (max-width: 400px) {
+            font-size: 1.5rem;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.carousel-wrapper {
+    grid-column: span 2;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+
+.carousel {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    transition: .5s ease-out;
+}
+
+.carousel-item {
+    width: 50vw;
+    height: inherit;
+    background: transparent center no-repeat;
+    background-size: contain;
+}
+
+.carousel-item:nth-child(1) {
+    background-image: url('../assets/mem1.png');
+}
+
+.carousel-item:nth-child(2) {
+    background-image: url('../assets/mem2.jpg');
+}
+
+.carousel-item:nth-child(3) {
+    background-image: url('../assets/mem3.jpg');
+}
+
+.carousel-item:nth-child(4) {
+    background-image: url('../assets/mem4.jpg');
+}
+
+@media (max-width: 600px) {
+    .carousel-wrapper {
+        grid-column: span 1;
+    }
+
+    .carousel {
+        column-gap: 5vw;
+    }
+
+    .carousel-item {
+        width: 80vw;
+        background-size: cover;
+    }
+}

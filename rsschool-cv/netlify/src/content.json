@@ -1,0 +1,46 @@
+{
+    "name": "Evgenii Shcherbakov",
+    "sections": ["about", "examples", "projects", "skills", "education", "english"],
+    "contacts": ["mailto:iipekolict@gmail.com", "https://t.me/IIPEKOLICT", "https://github.com/IIPEKOLICT"],
+    "skills": [
+        "HTML, CSS, SCSS, Stylus, Pug",
+        "JS, JQuery, Node, React, TypeScript",
+        "Python",
+        "Android development (Java, Kotlin)",
+        "DB (MongoDB)"
+    ],
+    "education": [
+        "MRC, Minsk (2015 - 2019)",
+        "IIT BSUIR, Minsk (2019 - 2022)"
+    ],
+    "projects": [
+        {
+            "title": "My CV",
+            "href": "https://github.com/IIPEKOLICT/rsschool-cv/tree/netlify",
+            "desc": "Yes, this is what you are looking at right now, lol",
+            "technologies": "React, TypeScript",
+            "date": "2021/09"
+        },
+        {
+            "title": "Quiz app for Android",
+            "href": "https://github.com/IIPEKOLICT/quiz",
+            "desc": "Task on subject RPOS in BSUIR",
+            "technologies": "Kotlin, Gradle",
+            "date": "2021/07 - 2021/09"
+        },
+        {
+            "title": "Todo app on Express",
+            "href": "https://iipekolict-todos-express.herokuapp.com",
+            "desc": "Todo backend app on Express",
+            "technologies": "Pug, Stylus, Node, Express",
+            "date": "2021/07"
+        },
+        {
+            "title": "School console app on Python",
+            "href": "https://github.com/IIPEKOLICT/school",
+            "desc": "Task on subject PT in BSUIR",
+            "technologies": "Python",
+            "date": "2021/05"
+        }
+    ]
+}

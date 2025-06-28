@@ -1,0 +1,21 @@
+.descriptions {
+    display: flex;
+    overflow: hidden;
+}
+
+.description {
+    min-width: calc(100% + 0.05em);
+    display: inline;
+    font-size: 2vw;
+    transition: .5s ease-out;
+}
+
+@media (max-width: 600px) {
+    .descriptions {
+        order: 2;
+    }
+
+    .description {
+        font-size: 5vw;
+    }
+}

@@ -1,0 +1,48 @@
+input {
+    display: none;
+}
+
+#r1:checked ~ .carousel-wrapper .carousel {
+    transform: translateX(0);
+}
+#r2:checked ~ .carousel-wrapper .carousel {
+    transform: translateX(-50vw);
+}
+#r3:checked ~ .carousel-wrapper .carousel {
+    transform: translateX(-100vw);
+}
+#r4:checked ~ .carousel-wrapper .carousel {
+    transform: translateX(-150vw);
+}
+
+#r1:checked ~ .descriptions .description {
+    transform: translateX(0);
+}
+#r2:checked ~ .descriptions .description {
+    transform: translateX(-100%);
+}
+#r3:checked ~ .descriptions .description {
+    transform: translateX(-200%);
+}
+#r4:checked ~ .descriptions .description {
+    transform: translateX(-300%);
+}
+
+#r1:checked ~ .indicators .indicator-label[for='r1'] .indicator::before,
+#r2:checked ~ .indicators .indicator-label[for='r2'] .indicator::before,
+#r3:checked ~ .indicators .indicator-label[for='r3'] .indicator::before,
+#r4:checked ~ .indicators .indicator-label[for='r4'] .indicator::before {
+    background-color: dimgray;
+}
+
+@media (max-width: 600px) {
+    #r2:checked ~ .carousel-wrapper .carousel {
+        transform: translateX(-85vw);
+    }
+    #r3:checked ~ .carousel-wrapper .carousel {
+        transform: translateX(-170vw);
+    }
+    #r4:checked ~ .carousel-wrapper .carousel {
+        transform: translateX(-255vw);
+    }
+}

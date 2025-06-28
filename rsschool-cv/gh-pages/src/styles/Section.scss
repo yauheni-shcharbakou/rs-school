@@ -1,0 +1,67 @@
+@import 'vars';
+
+.Section {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+
+    &:hover {
+        h3::after {
+            background-color: $accent;
+        }
+    }
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    h3 {
+        padding: $bp / 2 0;
+        position: relative;
+
+        &::after {
+            content: '';
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            background-color: transparent;
+            transition: $trans;
+        }
+    }
+
+    p:first-letter {
+        color: $accent;
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+
+        @media (max-width: 832px) {
+            height: 450px;
+        }
+
+        @media (max-width: 600px) {
+            height: 300px;
+        }
+
+        @media (max-width: 400px) {
+            height: 200px;
+        }
+    }
+}
+
+pre code.hljs {
+    padding: 0;
+    filter: invert(1);
+    font-size: .85em;
+    transition: $trans;
+
+    .light & {
+        filter: invert(0);
+    }
+
+    @media (max-width: 600px) {
+        font-size: .6em;
+    }
+}

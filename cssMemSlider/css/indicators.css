@@ -1,0 +1,48 @@
+.indicators {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.indicator-label {
+    width: 3vw;
+    height: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.indicator {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+    border-radius: 50%;
+    transition: .5s ease-out;
+}
+
+.indicator::before {
+    content: '';
+    width: 75%;
+    height: 75%;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: .5s ease-out;
+}
+
+.indicator-label:hover .indicator {
+    background-color: white;
+}
+
+@media (max-width: 600px) {
+    .indicators {
+        justify-content: center;
+    }
+
+    .indicator-label {
+        width: 7vw;
+        height: 7vw;
+    }
+}
