@@ -108,4 +108,8 @@ Write your tests in `src/08-snapshot-testing/index.test.ts`.
 
 ---
 
-[Task description](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/basic-testing/assignment.md)
+- [Task](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/basic-testing/assignment.md)
+- Screenshot:
+- Deployment:
+- Done 2025-05-11 / deadline 2025-05-13
+- Score: 258 / 258
