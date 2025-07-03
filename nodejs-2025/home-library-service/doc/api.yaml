@@ -1,0 +1,1266 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: string
+      summary: Greeting
+      tags:
+        - App
+  /album:
+    get:
+      operationId: AlbumController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: Albums list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlbumDto'
+      security:
+        - bearer: []
+      summary: Get all albums
+      tags:
+        - Album
+    post:
+      operationId: AlbumController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlbumCreateDto'
+      responses:
+        '201':
+          description: Album
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Create album
+      tags:
+        - Album
+  /album/{id}:
+    get:
+      operationId: AlbumController_findByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Album
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Get album by id
+      tags:
+        - Album
+    put:
+      operationId: AlbumController_updateByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlbumCreateDto'
+      responses:
+        '200':
+          description: Album
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Update album by id
+      tags:
+        - Album
+    delete:
+      operationId: AlbumController_deleteByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success request
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete album by id
+      tags:
+        - Album
+  /artist:
+    get:
+      operationId: ArtistController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: Artists list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtistDto'
+      security:
+        - bearer: []
+      summary: Get all artists
+      tags:
+        - Artist
+    post:
+      operationId: ArtistController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtistCreateDto'
+      responses:
+        '201':
+          description: Artist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Create artist
+      tags:
+        - Artist
+  /artist/{id}:
+    get:
+      operationId: ArtistController_findByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Artist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Get artist by id
+      tags:
+        - Artist
+    put:
+      operationId: ArtistController_updateByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtistCreateDto'
+      responses:
+        '200':
+          description: Artist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Update artist by id
+      tags:
+        - Artist
+    delete:
+      operationId: ArtistController_deleteByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete artist by id
+      tags:
+        - Artist
+  /auth/signup:
+    post:
+      operationId: AuthController_signup
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginDto'
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      summary: Sign up
+      tags:
+        - Auth
+  /auth/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginDto'
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokensDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      summary: Login
+      tags:
+        - Auth
+  /auth/refresh:
+    post:
+      operationId: AuthController_refresh
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRefreshDto'
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokensDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      summary: Refresh
+      tags:
+        - Auth
+  /favs:
+    get:
+      operationId: FavoritesController_find
+      parameters: []
+      responses:
+        '200':
+          description: Favorites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoritesDto'
+      security:
+        - bearer: []
+      summary: Get favorites
+      tags:
+        - Favorites
+  /favs/album/{id}:
+    post:
+      operationId: FavoritesController_addAlbum
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageFieldDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '422':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Add album to favorites by id
+      tags:
+        - Favorites
+    delete:
+      operationId: FavoritesController_deleteAlbum
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete album from favorites by id
+      tags:
+        - Favorites
+  /favs/artist/{id}:
+    post:
+      operationId: FavoritesController_addArtist
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageFieldDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '422':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Add artist to favorites by id
+      tags:
+        - Favorites
+    delete:
+      operationId: FavoritesController_deleteArtist
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete artist from favorites by id
+      tags:
+        - Favorites
+  /favs/track/{id}:
+    post:
+      operationId: FavoritesController_addTrack
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageFieldDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '422':
+          description: Track not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Add track to favorites by id
+      tags:
+        - Favorites
+    delete:
+      operationId: FavoritesController_deleteTrack
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Track not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete track from favorites by id
+      tags:
+        - Favorites
+  /track:
+    get:
+      operationId: TrackController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: Tracks list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrackDto'
+      security:
+        - bearer: []
+      summary: Get all tracks
+      tags:
+        - Track
+    post:
+      operationId: TrackController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackCreateDto'
+      responses:
+        '201':
+          description: Track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Create track
+      tags:
+        - Track
+  /track/{id}:
+    get:
+      operationId: TrackController_findByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Track not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Get track by id
+      tags:
+        - Track
+    put:
+      operationId: TrackController_updateByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackCreateDto'
+      responses:
+        '200':
+          description: Track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Update track by id
+      tags:
+        - Track
+    delete:
+      operationId: TrackController_deleteByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Track not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete track by id
+      tags:
+        - Track
+  /user:
+    get:
+      operationId: UserController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: Users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+      security:
+        - bearer: []
+      summary: Get all users
+      tags:
+        - User
+    post:
+      operationId: UserController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateDto'
+      responses:
+        '201':
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Get user by id
+      tags:
+        - User
+  /user/{id}:
+    get:
+      operationId: UserController_findByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Get user by id
+      tags:
+        - User
+    put:
+      operationId: UserController_updateByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdatePasswordDto'
+      responses:
+        '200':
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Update user by id
+      tags:
+        - User
+    delete:
+      operationId: UserController_deleteByIdOrException
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: UUID field
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '204':
+          description: Success request
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+      security:
+        - bearer: []
+      summary: Delete user by id
+      tags:
+        - User
+info:
+  title: Home Library Service
+  description: Home music library service
+  version: 1.0.0
+  contact: {}
+tags: []
+servers:
+  - url: http://localhost:4000
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    AlbumDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID field
+          format: uuid
+        name:
+          type: string
+          description: Album name
+        year:
+          type: number
+          description: Album year, should be positive
+          example: 1991
+          format: int32
+        artistId:
+          type: string
+          description: Artist id
+          nullable: true
+          format: uuid
+      required:
+        - id
+        - name
+        - year
+        - artistId
+    HttpStatus:
+      type: number
+      enum:
+        - 100
+        - 101
+        - 102
+        - 103
+        - 200
+        - 201
+        - 202
+        - 203
+        - 204
+        - 205
+        - 206
+        - 207
+        - 208
+        - 210
+        - 300
+        - 301
+        - 302
+        - 303
+        - 304
+        - 307
+        - 308
+        - 400
+        - 401
+        - 402
+        - 403
+        - 404
+        - 405
+        - 406
+        - 407
+        - 408
+        - 409
+        - 410
+        - 411
+        - 412
+        - 413
+        - 414
+        - 415
+        - 416
+        - 417
+        - 418
+        - 421
+        - 422
+        - 423
+        - 424
+        - 428
+        - 429
+        - 456
+        - 500
+        - 501
+        - 502
+        - 503
+        - 504
+        - 505
+        - 507
+        - 508
+      description: Exception status code
+    ExceptionResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Exception message
+          example: User not found
+        path:
+          type: string
+          description: Endpoint path
+          example: /user/123
+        timestamp:
+          format: date-time
+          type: string
+          description: Exception timestamp
+        statusCode:
+          description: Exception status code
+          example: 404
+          allOf:
+            - $ref: '#/components/schemas/HttpStatus'
+      required:
+        - message
+        - path
+        - timestamp
+        - statusCode
+    AlbumCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Album name
+        year:
+          type: number
+          description: Album year, should be positive
+          example: 1991
+          format: int32
+        artistId:
+          type: string
+          nullable: true
+          format: uuid
+      required:
+        - name
+        - year
+    ArtistDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID field
+          format: uuid
+        name:
+          type: string
+          description: Artist name
+        grammy:
+          type: boolean
+          description: Is artist has grammy
+      required:
+        - id
+        - name
+        - grammy
+    ArtistCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Artist name
+        grammy:
+          type: boolean
+          description: Is artist has grammy
+      required:
+        - name
+        - grammy
+    AuthLoginDto:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login
+        password:
+          type: string
+          description: User password
+      required:
+        - login
+        - password
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID field
+          format: uuid
+        createdAt:
+          type: number
+          description: User create date timestamp
+        login:
+          type: string
+          description: User login
+        updatedAt:
+          type: number
+          description: User update date timestamp
+        version:
+          type: number
+          description: User entity version
+          format: int32
+      required:
+        - id
+        - createdAt
+        - login
+        - updatedAt
+        - version
+    AuthTokensDto:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access token
+        refreshToken:
+          type: string
+          description: Refresh token
+      required:
+        - accessToken
+        - refreshToken
+    AuthRefreshDto:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          description: Refresh token
+      required:
+        - refreshToken
+    TrackDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID field
+          format: uuid
+        name:
+          type: string
+          description: Track name
+        artistId:
+          type: string
+          description: Artist id
+          nullable: true
+          format: uuid
+        albumId:
+          type: string
+          description: Album id
+          nullable: true
+          format: uuid
+        duration:
+          type: number
+          description: Track duration
+      required:
+        - id
+        - name
+        - artistId
+        - albumId
+        - duration
+    FavoritesDto:
+      type: object
+      properties:
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistDto'
+        albums:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlbumDto'
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackDto'
+      required:
+        - artists
+        - albums
+        - tracks
+    MessageFieldDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Result message
+      required:
+        - message
+    TrackCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Track name
+        duration:
+          type: number
+          description: Track duration
+        artistId:
+          type: string
+          description: Artist id
+          nullable: true
+          format: uuid
+        albumId:
+          type: string
+          description: Album id
+          nullable: true
+          format: uuid
+      required:
+        - name
+        - duration
+    UserCreateDto:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login
+        password:
+          type: string
+          description: User password
+      required:
+        - login
+        - password
+    UserUpdatePasswordDto:
+      type: object
+      properties:
+        newPassword:
+          type: string
+          description: New user password
+        oldPassword:
+          type: string
+          description: Old user password
+      required:
+        - newPassword
+        - oldPassword

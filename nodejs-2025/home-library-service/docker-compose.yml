@@ -1,0 +1,130 @@
+name: home-library-service
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    restart: unless-stopped
+    user: postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    networks:
+      - local-network
+    command: >
+      postgres
+      -c logging_collector=on
+      -c log_directory='/var/log/postgresql'
+      -c log_filename='postgresql.log'
+      -c log_statement='all'
+      -c log_min_duration_statement=0
+      -c log_rotation_age='1d'
+      -c log_rotation_size='10MB'
+    volumes:
+      - db_local_data:/var/lib/postgresql/data
+      - db_local_logs:/var/log/postgresql
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 2s
+      timeout: 1s
+      retries: 10
+    profiles:
+      - local
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      args:
+        PORT: ${PORT}
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/home-library-service
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - local-network
+    command: sh -c "npm run start:docker"
+    volumes:
+      - ./src:/app/src
+      - ./nodemon.json:/app/nodemon.json
+    depends_on:
+      db:
+        condition: service_healthy
+    profiles:
+      - local
+
+  db_hub:
+    image: evgeniishcherbakov/postgresql:latest
+    restart: unless-stopped
+    user: postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    networks:
+      - hub-network
+    command: >
+      postgres
+      -c logging_collector=on
+      -c log_directory='/var/log/postgresql'
+      -c log_filename='postgresql.log'
+      -c log_statement='all'
+      -c log_min_duration_statement=0
+      -c log_rotation_age='1d'
+      -c log_rotation_size='10MB'
+    volumes:
+      - db_hub_data:/var/lib/postgresql/data
+      - db_hub_logs:/var/log/postgresql
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 2s
+      timeout: 1s
+      retries: 10
+    profiles:
+      - hub
+
+  backend_hub:
+    image: evgeniishcherbakov/home-library-service:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db_hub:5432/home-library-service
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - hub-network
+    command: sh -c "npm run start:docker"
+    volumes:
+      - ./src:/app/src
+      - ./nodemon.json:/app/nodemon.json
+    depends_on:
+      db_hub:
+        condition: service_healthy
+    profiles:
+      - hub
+
+networks:
+  local-network:
+    driver: bridge
+  hub-network:
+    driver: bridge
+
+volumes:
+  db_local_data:
+  db_local_logs:
+  db_hub_data:
+  db_hub_logs:
